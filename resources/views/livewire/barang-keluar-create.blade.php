@@ -117,23 +117,6 @@
                                         wire:model.defer="tglKeluar" placeholder="name@example.com">
                                     <label for="tgl_transaksi">Tanggal Transaksi</label>
                                 </div>
-
-                                <div class="form-floating">
-
-                                    <select class="form-select @error('pelangganId') is-invalid @enderror"
-                                        id="pelangganId" aria-label="Floating label select example"
-                                        wire:model.defer="pelangganId">
-                                        <option selected>Pilih Pelanggan</option>
-                                        @foreach ($this->pelanggans as $item)
-                                            <option value="{{ $item->id }}">{{ $item->nama_pelanggan }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <label for="pelangganId">Pelanggan</label>
-                                    @error('pelangganId')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
                             </div>
 
                         </div>

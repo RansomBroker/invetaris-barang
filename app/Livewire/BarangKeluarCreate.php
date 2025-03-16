@@ -20,18 +20,11 @@ class BarangKeluarCreate extends Component
     public $totalQty;
     public $tglKeluar;
     public $noTransaksi;
-    public $pelangganId;
 
     #[Computed]
     public function barangs()
     {
         return Barang::all()->sortBy('nama_barang');
-    }
-
-    #[Computed]
-    public function pelanggans()
-    {
-        return Pelanggan::all()->sortBy('nama_pelanggan');
     }
 
     public function addInput()
@@ -123,7 +116,6 @@ class BarangKeluarCreate extends Component
     {
         $rules = [
             'inputs.*.barang_id' => ['required', 'exists:barangs,id'],
-            'pelangganId' => ['required', 'exists:pelanggans,id'],
         ];
 
         foreach ($this->inputs as $key => $value) {
@@ -155,7 +147,6 @@ class BarangKeluarCreate extends Component
             $barangKeluar = BarangKeluar::create([
                 'no_transaksi' => $this->noTransaksi,
                 'tgl_keluar' => $this->tglKeluar,
-                'pelanggan_id' => $this->pelangganId,
                 'total_qty' => $this->totalQty,
                 'total_harga' => $this->grandTotal,
             ]);

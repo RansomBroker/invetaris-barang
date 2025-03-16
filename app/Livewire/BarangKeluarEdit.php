@@ -19,7 +19,6 @@ class BarangKeluarEdit extends Component
     public $totalQty;
     public $tglKeluar;
     public $noTransaksi;
-    public $pelangganId;
 
     #[Computed]
     public function barangs()
@@ -27,11 +26,6 @@ class BarangKeluarEdit extends Component
         return Barang::all()->sortBy('nama_barang');
     }
 
-    #[Computed]
-    public function pelanggans()
-    {
-        return Pelanggan::all()->sortBy('nama_pelanggan');
-    }
 
     public function mount($barangKeluar)
     {
@@ -149,8 +143,7 @@ class BarangKeluarEdit extends Component
     public function rules()
     {
         $rules = [
-            'inputs.*.barang_id' => ['required', 'exists:barangs,id'],
-            'pelangganId' => ['required', 'exists:pelanggans,id'],
+            'inputs.*.barang_id' => ['required', 'exists:barangs,id']
         ];
 
         foreach ($this->inputs as $key => $value) {
@@ -188,7 +181,6 @@ class BarangKeluarEdit extends Component
             $this->barangKeluar->update([
                 'no_transaksi' => $this->noTransaksi,
                 'tgl_keluar' => $this->tglKeluar,
-                'pelanggan_id' => $this->pelangganId,
                 'total_qty' => $this->totalQty,
                 'total_harga' => $this->grandTotal,
             ]);
