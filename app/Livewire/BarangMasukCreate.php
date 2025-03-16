@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Barang;
-use App\Models\Pemasok;
 use Livewire\Component;
 use App\Models\BarangMasuk;
 use Livewire\Attributes\Computed;
@@ -18,18 +17,12 @@ class BarangMasukCreate extends Component
     public $totalQty;
     public $tglMasuk;
     public $noTransaksi;
-    public $pemasokId;
+    
 
     #[Computed]
     public function barangs()
     {
         return Barang::all()->sortBy('nama_barang');
-    }
-
-    #[Computed]
-    public function pemasoks()
-    {
-        return Pemasok::all()->sortBy('nama_pemasok');
     }
 
     public function addInput()
@@ -121,7 +114,6 @@ class BarangMasukCreate extends Component
     {
         $rules = [
             'inputs.*.barang_id' => ['required', 'exists:barangs,id'],
-            'pemasokId' => ['required', 'exists:pemasoks,id'],
         ];
 
         foreach ($this->inputs as $key => $value) {
@@ -153,7 +145,6 @@ class BarangMasukCreate extends Component
             $barangMasuk = BarangMasuk::create([
                 'no_transaksi' => $this->noTransaksi,
                 'tgl_masuk' => $this->tglMasuk,
-                'pemasok_id' => $this->pemasokId,
                 'total_qty' => $this->totalQty,
                 'total_harga' => $this->grandTotal,
             ]);
@@ -184,8 +175,6 @@ class BarangMasukCreate extends Component
             return redirect()->route('barang-masuk.create');
 
         }
-
-
 
     }
 

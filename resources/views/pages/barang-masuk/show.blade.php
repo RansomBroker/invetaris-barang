@@ -75,24 +75,6 @@
                     <div class="card card-lg">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-6">
-                                    <p class="h3">Perusahaan</p>
-                                    <address>
-                                        Street Address<br>
-                                        State, City<br>
-                                        Region, Postal Code<br>
-                                        ltd@example.com
-                                    </address>
-                                </div>
-                                <div class="col-6 text-end">
-                                    <p class="h3">Pemasok</p>
-                                    <address>
-                                        {{ $barangMasuk->pemasok->nama_pemasok }}<br>
-                                        {{ $barangMasuk->pemasok->alamat }}<br>
-                                        {{ $barangMasuk->pemasok->notelp }}<br>
-                                        {{ $barangMasuk->pemasok->email }}
-                                    </address>
-                                </div>
                                 <div class="col-12 my-5">
                                     <div class="fs-2">{{ $barangMasuk->no_transaksi }}</div>
                                     <div>{{ \Carbon\Carbon::parse($barangMasuk->tgl_masuk)->format('d M Y') }}</div>

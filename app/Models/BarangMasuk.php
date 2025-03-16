@@ -14,7 +14,6 @@ class BarangMasuk extends Model
     protected $fillable = [
         'no_transaksi',
         'tgl_masuk',
-        'pemasok_id',
         'total_qty',
         'total_harga',
     ];
@@ -23,21 +22,8 @@ class BarangMasuk extends Model
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->where('no_transaksi', 'like', '%' . $search . '%')
-                ->orWhere('tgl_masuk', 'like', '%' . $search . '%')
-                ->orWhereHas('pemasok', function ($query) use ($search) {
-                    $query->where('nama_pemasok', 'like', '%' . $search . '%');
-                });
+                ->orWhere('tgl_masuk', 'like', '%' . $search . '%');
         });
-    }
-
-    /**
-     * Get the pemasok that owns the BarangMasuk
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function pemasok(): BelongsTo
-    {
-        return $this->belongsTo(Pemasok::class);
     }
 
     /**

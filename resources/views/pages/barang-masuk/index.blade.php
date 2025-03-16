@@ -76,7 +76,6 @@
                                         <th class="w-1">No</th>
                                         <th>Tgl Transaksi</th>
                                         <th>No. Transaksi</th>
-                                        <th>Pemasok</th>
                                         <th class="text-center">Total qty</th>
                                         <th class="text-end">Total Harga</th>
 
@@ -98,9 +97,6 @@
                                                 <a
                                                     href="{{ route('barang-masuk.show', $row->id) }}">{{ $row->no_transaksi }}</a>
 
-                                            </td>
-                                            <td class="align-text-top" data-label="Pemasok">
-                                                {{ $row->pemasok->nama_pemasok }}
                                             </td>
                                             <td class="align-text-top text-start text-lg-center" data-label="Total Qty">
                                                 {{ $row->total_qty }}
