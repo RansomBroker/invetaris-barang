@@ -62,6 +62,10 @@ Sistem informasi pencatatan barang masuk dan keluar menggunakan framework larave
 
 Dharma – isengoding@gmail.com
 
+## Customized by
+
+RansomBroker
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
