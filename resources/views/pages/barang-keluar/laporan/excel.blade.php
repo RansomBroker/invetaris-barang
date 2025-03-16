@@ -31,7 +31,6 @@
                 <th style="text-align:center; border: 1px solid black">No</th>
                 <th style="text-align:center; border: 1px solid black">No. Transaksi</th>
                 <th style="text-align:center; border: 1px solid black">Tanggal Transaksi</th>
-                <th style="text-align:center; border: 1px solid black">Pelanggan</th>
                 <th style="text-align:center; border: 1px solid black">Kode Barang</th>
                 <th style="text-align:center; border: 1px solid black">Nama Barang</th>
                 <th style="text-align:center; border: 1px solid black">Satuan</th>
@@ -48,9 +47,6 @@
                     <td style="text-align:center; border: 1px solid black">{{ $row->barangKeluar->no_transaksi }}</td>
                     <td style="text-align:center; border: 1px solid black">
                         {{ \Carbon\Carbon::parse($row->barangKeluar->tgl_keluar)->format('d M Y') }}
-                    </td>
-                    <td style="text-align:left; border: 1px solid black">
-                        {{ optional($row->barangKeluar)->pelanggan->nama_pelanggan }}
                     </td>
                     <td style="text-align:left; border: 1px solid black">{{ $row->barang->kode }}</td>
                     <td style="text-align:left; border: 1px solid black">{{ $row->barang->nama_barang }}</td>

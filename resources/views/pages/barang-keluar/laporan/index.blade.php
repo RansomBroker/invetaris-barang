@@ -98,7 +98,6 @@
                                         <th class="w-1">No</th>
                                         <th>Transaksi</th>
                                         <th>Barang</th>
-                                        <th>Pelanggan</th>
                                         <th>Satuan</th>
                                         <th class="text-end">Harga</th>
                                         <th class="text-center">Jumlah</th>
@@ -128,12 +127,7 @@
                                             </td>
                                             <td data-label="Barang">
                                                 <div class="d-flex align-items-top">
-                                                    <a data-fslightbox="gallery"
-                                                        href="{{ asset('storage/' . $row->barang->gambar) }}">
-                                                        <span class="avatar me-2"
-                                                            style="background-image: url({{ asset('storage/' . $row->barang->gambar) }})"></span>
-
-                                                    </a>
+                                                    
                                                     <div class="flex-fill">
                                                         <div class="font-weight-medium">{{ $row->barang->nama_barang }}
                                                         </div>
@@ -142,9 +136,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="align-text-top" data-label="Pelanggan">
-                                                {{ $row->barangKeluar->pelanggan->nama_pelanggan }}
-                                            </td>
+                                          
                                             <td class="align-text-top" data-label="Satuan">
                                                 {{ $row->barang->satuan->nama_satuan }}
                                             </td>

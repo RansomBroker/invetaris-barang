@@ -109,7 +109,6 @@
 
                     {{-- <th style="text-align: center; white-space: nowrap;">Gambar</th> --}}
                     <th style="text-align: center; white-space: nowrap;">Nama Barang</th>
-                    <th style="text-align: center; white-space: nowrap;">Pelanggan</th>
                     <th style="text-align: center; white-space: nowrap;">Satuan</th>
                     <th style="text-align: center; white-space: nowrap;">Harga</th>
                     <th style="text-align: center">Jumlah</th>
@@ -141,10 +140,6 @@
                                 {{ $row->barang->kode }}
                             </span>
                         </td>
-                        <td style="text-align: left; vertical-align: top; white-space: nowrap;">
-                            {{ $row->barangKeluar->pelanggan->nama_pelanggan }}</td>
-
-
                         <td style="text-align: center; vertical-align: top; white-space: nowrap;">
                             {{ $row->barang->satuan->nama_satuan }}</td>
                         <td style="text-align: right; vertical-align: top; white-space: nowrap;">Rp.
