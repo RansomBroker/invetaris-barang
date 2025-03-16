@@ -44,18 +44,11 @@ class BarangController extends Controller
      */
     public function store(StoreBarangRequest $request)
     {
-        $data = $request->except('gambar');
-
+        $data = $request->validated();
         $data['kategori'] = $request->kategori_id;
 
         try {
             \DB::beginTransaction();
-
-            if (!empty($request->input('gambar'))) {
-                $newFilename = Str::after($request->input('gambar'), 'tmp/');
-                Storage::disk('public')->move($request->input('gambar'), "gambar/$newFilename");
-                $data['gambar'] = "gambar/$newFilename";
-            }
 
             $barang = Barang::create($data);
             $barang->kategoris()->sync($data['kategori_id']);
@@ -97,25 +90,12 @@ class BarangController extends Controller
      */
     public function update(UpdateBarangRequest $request, Barang $barang)
     {
-        $data = $request->except('gambar');
-
+        $data = $request->validated();
         $data['kategori'] = $request->kategori_id;
 
         try {
             \DB::beginTransaction();
-            if (!empty($request->input('gambar'))) {
-
-                if (Str::afterLast($request->input('gambar'), '/') !== Str::afterLast($barang->gambar, '/')) {
-                    $newFilename = Str::after($request->input('gambar'), 'tmp/');
-                    if (Storage::exists('public/' . $barang->gambar) && $barang->gambar !== "gambar/default.png") {
-                        Storage::delete('public/' . $barang->gambar);
-                    }
-                    Storage::disk('public')->move($request->input('gambar'), "gambar/$newFilename");
-                    $data['gambar'] = "gambar/$newFilename";
-                }
-
-            }
-
+    
             $barang->update($data);
             $barang->kategoris()->sync($data['kategori_id']);
             \DB::commit();

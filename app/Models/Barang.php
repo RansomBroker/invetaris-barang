@@ -20,7 +20,6 @@ class Barang extends Model
         'stok',
         'min_stok',
         'harga',
-        'gambar',
         'keterangan',
     ];
 
@@ -75,14 +74,6 @@ class Barang extends Model
     public function barangKeluarDetails(): HasMany
     {
         return $this->hasMany(BarangKeluarDetail::class);
-    }
-
-    protected function imageBase64(): Attribute
-    {
-        $gambarPath = public_path('storage/' . $this->gambar);
-        return Attribute::make(
-            get: fn() => base64_encode(file_get_contents($gambarPath)),
-        );
     }
 
     /**

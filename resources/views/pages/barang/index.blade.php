@@ -125,12 +125,6 @@
                                             </td>
                                             <td data-label="Barang">
                                                 <div class="d-flex py-1 align-items-top">
-                                                    <a data-fslightbox="gallery"
-                                                        href="{{ asset('storage/' . $row->gambar) }}">
-                                                        <span class="avatar me-2"
-                                                            style="background-image: url({{ asset('storage/' . $row->gambar) }})"></span>
-
-                                                    </a>
                                                     <div class="flex-fill">
                                                         <div class="font-weight-medium">{{ $row->nama_barang }}</div>
                                                         <div class="text-secondary"><a href="#"
