@@ -127,8 +127,6 @@
                                                 <div class="d-flex py-1 align-items-top">
                                                     <div class="flex-fill">
                                                         <div class="font-weight-medium">{{ $row->nama_barang }}</div>
-                                                        <div class="text-secondary"><a href="#"
-                                                                class="text-reset">{{ $row->kode }}</a></div>
                                                     </div>
                                                 </div>
                                             </td>

@@ -15,7 +15,6 @@ class Barang extends Model
 
     protected $fillable = [
         'nama_barang',
-        'kode',
         'satuan_id',
         'stok',
         'min_stok',
@@ -27,7 +26,6 @@ class Barang extends Model
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->where('nama_barang', 'like', '%' . $search . '%')
-                ->orWhere('kode', 'like', '%' . $search . '%')
                 ->orWhere('harga', 'like', '%' . $search . '%')
                 ->orWhere('stok', 'like', '%' . $search . '%')
                 ->orWhereHas('satuan', function ($query) use ($search) {

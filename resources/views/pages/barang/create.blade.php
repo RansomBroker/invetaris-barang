@@ -91,14 +91,6 @@
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label required">Kode Barang</label>
-                                            <input type="text" name="kode" value="{{ old('kode') }}"
-                                                class="form-control @error('kode') is-invalid @enderror" placeholder="">
-                                            @error('kode')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="mb-3">
                                             <label class="form-label required">Satuan</label>
                                             <select name="satuan_id"
                                                 class="form-select @error('satuan_id') is-invalid @enderror" id="satuan_id">
