@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->id();
             $table->string('no_transaksi');
             $table->date('tgl_masuk');
-            $table->foreignId('pemasok_id')->constrained('pemasoks');
             $table->integer('total_qty');
             $table->string('total_harga');
             $table->timestamps();

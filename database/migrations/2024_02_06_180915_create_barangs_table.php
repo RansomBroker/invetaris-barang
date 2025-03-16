@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->integer('stok');
             $table->integer('min_stok');
             $table->integer('harga');
-            $table->string('gambar')->nullable()->default('gambar/default.png');
             $table->string('keterangan')->nullable();
             $table->timestamps();
         });
