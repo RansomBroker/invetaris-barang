@@ -22,7 +22,7 @@
                             <i class="ti ti-filter icon"></i>
                             Filter
                         </a>
-                        <a href="{{ route('barang-masuk.laporan.pdf', [
+                        <a href="{{ route('pendapatan.laporan.pdf', [
                             'from_date' => request()->query('from_date'),
                             'to_date' => request()->query('to_date'),
                         ]) }}"
@@ -30,7 +30,7 @@
                             <i class="ti ti-file-export icon"></i>
                             PDF
                         </a>
-                        <a href="{{ route('barang-masuk.laporan.excel', [
+                        <a href="{{ route('pendapatan.laporan.excel', [
                             'from_date' => request()->query('from_date'),
                             'to_date' => request()->query('to_date'),
                         ]) }}"

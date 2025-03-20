@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pendapatan;
+use App\Exports\PendapatanExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PendapatanLaporanController extends Controller
 {
@@ -12,6 +15,29 @@ class PendapatanLaporanController extends Controller
         $pendapatanData = $this->filter();
         
         return view('pages.pendapatan.laporan.index', compact('pendapatanData'));
+    }
+
+    public function excel()
+    {
+
+        $pendapatanData = $this->filter();
+
+        return Excel::download(new PendapatanExport($pendapatanData), 'pendapatan.xls');
+    }
+
+    public function pdf()
+    {
+        $pendapatanData = $this->filter();
+
+        $pdf = Pdf::setOptions([
+            'dpi' => 110,
+            // 'defaultFont' => 'sans-serif',
+        ])
+            ->loadView('pages.pendapatan.laporan.pdf', [
+                'pendapatanData' => $pendapatanData,
+            ]);
+
+        return $pdf->stream('laporan-pendapatan.pdf');
     }
 
     public function filter()
