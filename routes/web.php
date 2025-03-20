@@ -18,6 +18,7 @@ use App\Http\Controllers\BarangStokLaporanController;
 use App\Http\Controllers\BarangMasukLaporanController;
 use App\Http\Controllers\BarangKeluarLaporanController;
 use App\Http\Controllers\PendapatanController;
+use App\Htpp\Controllers\PendapatanLaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,5 +101,14 @@ Route::middleware(['auth'])->group(function () {
 
     // Routes for Pendapatan
     Route::resource('pendapatan', PendapatanController::class);
+
+    Route::get('pendapatan/laporan/pdf', [PendapatanLaporanController::class, 'pdf'])
+        ->name('pendapatan.laporan.pdf');
+
+    Route::get('pendapatan/laporan/excel', [PendapatanLaporanController::class, 'excel'])
+        ->name('pendapatan.laporan.excel');
+    
+    Route::get('pendapatan/laporan', [PendapatanLaporanController::class, 'index'])
+        ->name('pendapatan.laporan');
 });
 

@@ -173,6 +173,16 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item @if (request()->routeIs('pendapatan.laporan')) active @endif">
+                    <a class="nav-link" href="{{ route('pendapatan.laporan') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <i class="ti ti-report-analytics icon"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Pendapatan
+                        </span>
+                    </a>
+                </li>
                 <li class="nav-item @if (request()->routeIs('barang-keluar.laporan')) active @endif">
                     <a class="nav-link" href="{{ route('barang-keluar.laporan') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
