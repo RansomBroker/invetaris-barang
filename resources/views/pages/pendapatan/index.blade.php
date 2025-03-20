@@ -75,7 +75,7 @@
                                     <tr>
                                         <th class="w-1">No</th>
                                         <th>Tgl Pendapatan</th>
-                                        <th>Nama Pendapatan</th>
+                                        <th>Keterangan</th>
                                         <th class="text-center">Jumlah</th>
                                         <th class="w-1"></th>
                                     </tr>
@@ -91,13 +91,14 @@
                                             <td class="align-text-top" data-label="Tanggal">
                                                 {{ $row->tanggal }}
                                             </td>
-                                            <td class="align-text-top" data-label="Nama">
-                                                <a
-                                                    href="{{ route('pendapatan.show', $row->id) }}">{{ $row->nama }}</a>
-
+                                            <td class="align-text-top" data-label="Keterangan">
+                                                {{ $row->Keteragan }}
                                             </td>
                                             <td class="align-text-top text-start text-lg-center" data-label="Jumlah">
-                                                Rp. {{ number_format($row->jumlah) }}
+                                                <a
+                                                    href="{{ route('pendapatan.show', $row->id) }}">                                                Rp. {{ number_format($row->jumlah) }}
+                                                    </a>
+
                                             </td>
 
                                             <td class="align-text-top">

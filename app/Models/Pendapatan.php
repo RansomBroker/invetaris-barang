@@ -9,12 +9,12 @@ class Pendapatan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tanggal', 'nama','jumlah'];
+    protected $fillable = ['tanggal', 'keterangan','jumlah'];
 
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where('nama', 'like', '%' . $search . '%')
+            $query->where('keterangan', 'like', '%' . $search . '%')
                 ->orWhere('tanggal', 'like', '%' . $search . '%');
         });
     }
