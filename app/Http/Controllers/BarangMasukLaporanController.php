@@ -51,7 +51,7 @@ class BarangMasukLaporanController extends Controller
         $filter['search'] = request()->keyword;
         $filter['date_from'] = request()->from_date;
         $filter['date_to'] = request()->to_date;
-
+    
         return BarangMasukDetail::query()
             ->with('barang', 'barangMasuk')
             ->filter($filter)

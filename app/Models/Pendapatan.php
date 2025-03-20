@@ -18,4 +18,9 @@ class Pendapatan extends Model
                 ->orWhere('tanggal', 'like', '%' . $search . '%');
         });
     }
+
+    public function barangMasuk()
+    {
+        return $this->belongsTo(BarangMasuk::class, 'tanggal', 'tgl_masuk');
+    }
 }

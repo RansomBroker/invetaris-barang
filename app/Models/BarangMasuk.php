@@ -35,4 +35,9 @@ class BarangMasuk extends Model
     {
         return $this->hasMany(BarangMasukDetail::class);
     }
+
+    public function pendapatan()
+    {
+        return $this->hasOne(Pendapatan::class, 'tanggal', 'tgl_masuk');
+    }
 }

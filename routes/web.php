@@ -18,7 +18,7 @@ use App\Http\Controllers\BarangStokLaporanController;
 use App\Http\Controllers\BarangMasukLaporanController;
 use App\Http\Controllers\BarangKeluarLaporanController;
 use App\Http\Controllers\PendapatanController;
-use App\Htpp\Controllers\PendapatanLaporanController;
+use App\Http\Controllers\PendapatanLaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,16 +99,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('barang-masuk/laporan', [BarangMasukLaporanController::class, 'index'])->name('barang-masuk.laporan');
     Route::resource('barang-masuk', BarangMasukController::class);
 
+    Route::get('pendapatan/laporan/pdf', [PendapatanLaporanController::class, 'pdf'])->name('pendapatan.laporan.pdf');
+
+    Route::get('pendapatan/laporan/excel', [PendapatanLaporanController::class, 'excel'])->name('pendapatan.laporan.excel');
+    
+    Route::get('pendapatan/laporan', [PendapatanLaporanController::class, 'index'])->name('pendapatan.laporan');
+    
     // Routes for Pendapatan
     Route::resource('pendapatan', PendapatanController::class);
-
-    Route::get('pendapatan/laporan/pdf', [PendapatanLaporanController::class, 'pdf'])
-        ->name('pendapatan.laporan.pdf');
-
-    Route::get('pendapatan/laporan/excel', [PendapatanLaporanController::class, 'excel'])
-        ->name('pendapatan.laporan.excel');
-    
-    Route::get('pendapatan/laporan', [PendapatanLaporanController::class, 'index'])
-        ->name('pendapatan.laporan');
 });
 
