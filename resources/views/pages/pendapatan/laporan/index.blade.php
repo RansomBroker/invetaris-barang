@@ -38,17 +38,6 @@
                             <i class="ti ti-table-export icon"></i>
                             Excel
                         </a>
-                        <a href="{{ route('pendapatan.create') }}" class="btn btn-primary d-sm-none btn-icon"
-                            data-bs-toggle="modal" data-bs-target="#modal-report" aria-label="Create new report">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 5l0 14" />
-                                <path d="M5 12l14 0" />
-                            </svg>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -65,15 +54,6 @@
 
             <div class="row">
                 <div class="col-12">
-                    {{-- <form action="" method="get">
-                        <div class="input-icon mb-3">
-                            <input type="search" value="{{ request()->query('keyword') }}" class="form-control w-100"
-                                name="keyword" placeholder="Search…">
-                            <span class="input-icon-addon">
-                                <i class="icon ti ti-search"></i>
-                            </span>
-                        </div>
-                    </form> --}}
                     @if (request()->query('from_date'))
                         <div class="mb-3">
                             Filters
@@ -82,7 +62,6 @@
                             <a class="ms-2 text-reset text-secondary" href="{{ route('pendapatan.laporan') }}">Reset</a>
                         </div>
                     @endif
-
                 </div>
             </div>
             <div class="row row-deck row-cards">
@@ -92,73 +71,70 @@
                             Total : {{ $pendapatanData->count() }}
                         </div>
                         <div class="table-responsive">
-                        <table class="table table-vcenter table-mobile-md card-table">
-                            <thead>
-                                <tr>
-                                    <th class="w-1">No</th>
-                                    <th>Tanggal Pemasukan</th>
-                                    <th>No Transaksi (Barang Masuk)</th>
-                                    <th>Pengeluaran (Barang Masuk)</th>
-                                    <th>Pendapatan</th>
-                                    <th>Total Pendapatan Bersih</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($pendapatanData as $row)
+                            <table class="table table-vcenter table-mobile-md card-table">
+                                <thead>
                                     <tr>
-                                        <td class="text-secondary align-text-top" data-label="No">{{ $loop->iteration }}</td>
+                                        <th class="w-1">No</th>
+                                        <th>Tanggal Pemasukan</th>
+                                        <th>No Transaksi (Barang Masuk)</th>
+                                        <th>Pengeluaran (Barang Masuk)</th>
+                                        <th>Pendapatan</th>
+                                        <th>Total Pendapatan Bersih</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($pendapatanData as $row)
+                                        <tr>
+                                            <td class="text-secondary align-text-top" data-label="No">{{ $loop->iteration }}</td>
 
-                                        <!-- Tanggal Pemasukan -->
-                                        <td data-label="Tanggal Pemasukan">
-                                            {{ $row->tanggal }} <!-- Tanggal dari Pendapatan -->
-                                        </td>
+                                            <!-- Tanggal Pemasukan -->
+                                            <td data-label="Tanggal Pemasukan">
+                                                {{ $row->tanggal }} <!-- Tanggal dari Pendapatan -->
+                                            </td>
 
-                                        <!-- No Transaksi -->
-                                        <td data-label="Transaksi">
-                                            <div class="d-flex flex-column align-items-top">
-                                                <div class="font-weight-medium">{{ $row->barangMasuk->tgl_masuk }}</div>
-                                                <div class="text-secondary">
-                                                    <a href="{{ route('barang-masuk.show', $row->barangMasuk->id) }}" target="_blank">{{ $row->barangMasuk->no_transaksi }}</a>
+                                            <!-- No Transaksi -->
+                                            <td data-label="Transaksi">
+                                                <div class="d-flex flex-column align-items-top">
+                                                    @foreach ($row->barangMasuks as $barangMasuk)
+                                                        <div class="font-weight-medium">{{ $barangMasuk->tgl_masuk }}</div>
+                                                        <div class="text-secondary">
+                                                            <a href="{{ route('barang-masuk.show', $barangMasuk->id) }}" target="_blank">{{ $barangMasuk->no_transaksi }}</a>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
-                                            </div>
-                                        </td>
+                                            </td>
 
-                                        <!-- Pengeluaran (Total Harga dari Barang Masuk) -->
-                                        <td class="align-text-top text-start text-lg-center" data-label="Pengeluaran">
-                                            Rp. {{ number_format($row->barangMasuk->total_harga, 0, ',', '.') }}
-                                        </td>
+                                            <!-- Pengeluaran (Total Harga dari Barang Masuk) -->
+                                            <td class="align-text-top text-start text-lg-center" data-label="Pengeluaran">
+                                                @php
+                                                    $totalHarga = $row->barangMasuks->sum('total_harga');
+                                                @endphp
+                                                Rp. {{ number_format($totalHarga, 0, ',', '.') }}
+                                            </td>
 
-                                        <!-- Pendapatan -->
-                                        <td class="align-text-top text-start text-lg-center" data-label="Pendapatan">
-                                            Rp. {{ number_format($row->jumlah, 0, ',', '.') }}
-                                        </td>
+                                            <!-- Pendapatan -->
+                                            <td class="align-text-top text-start text-lg-center" data-label="Pendapatan">
+                                                Rp. {{ number_format($row->jumlah, 0, ',', '.') }}
+                                            </td>
 
-                                        <!-- Total Pendapatan Bersih -->
-                                        <td class="align-text-top text-start text-lg-center" data-label="Total Pendapatan Bersih">
-                                            @php
-                                                $pendapatanBersih = $row->jumlah - $row->barangMasuk->total_harga;
-                                            @endphp
-                                            Rp. {{ number_format($pendapatanBersih, 0, ',', '.') }}
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text-center">No data found.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-
+                                            <!-- Total Pendapatan Bersih -->
+                                            <td class="align-text-top text-start text-lg-center" data-label="Total Pendapatan Bersih">
+                                                @php
+                                                    $pendapatanBersih = $row->jumlah - $totalHarga;
+                                                @endphp
+                                                Rp. {{ number_format($pendapatanBersih, 0, ',', '.') }}
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6" class="text-center">No data found.</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
                         </div>
-
-
-                        {{-- <div class="card-footer d-flex justify-content-center align-items-center">
-                            test
-                        </div> --}}
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -184,8 +160,6 @@
                         </div>
 
                     </div>
-
-
 
                     <div class="modal-footer">
                         <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">

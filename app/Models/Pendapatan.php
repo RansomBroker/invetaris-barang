@@ -19,8 +19,8 @@ class Pendapatan extends Model
         });
     }
 
-    public function barangMasuk()
+    public function barangMasuks()
     {
-        return $this->belongsTo(BarangMasuk::class, 'tanggal', 'tgl_masuk');
+        return $this->hasMany(BarangMasuk::class, 'tgl_masuk', 'tanggal');
     }
 }

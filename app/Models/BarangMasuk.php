@@ -38,6 +38,6 @@ class BarangMasuk extends Model
 
     public function pendapatan()
     {
-        return $this->hasOne(Pendapatan::class, 'tanggal', 'tgl_masuk');
+        return $this->belongsTo(Pendapatan::class, 'tgl_masuk', 'tanggal');
     }
 }

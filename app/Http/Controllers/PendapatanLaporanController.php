@@ -47,7 +47,7 @@ class PendapatanLaporanController extends Controller
         $filter['date_to'] = request()->to_date;
         
 
-        $pendapatanData = Pendapatan::with('barangMasuk')
+        $pendapatanData = Pendapatan::with('barangMasuks')
             ->when($filter['date_from'], function ($query) use ($filter) {
                 // Memfilter berdasarkan tanggal dari (>=)
                 return $query->whereDate('tanggal', '>=', $filter['date_from']);
