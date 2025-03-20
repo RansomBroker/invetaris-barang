@@ -139,6 +139,19 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item @if (request()->routeIs('pendapatan.index') ||
+                        request()->routeIs('pendapatan.create') ||
+                        request()->routeIs('pendapatan.edit') ||
+                        request()->routeIs('pendapatan.show')) active @endif">
+                    <a class="nav-link" href="{{ route('pendapatan.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <i class="ti ti-transfer-in icon"></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Pendapatan
+                        </span>
+                    </a>
+                </li>
                 <li class="nav-item @if (request()->routeIs('barang-keluar.*')) active @endif">
                     <a class="nav-link" href="{{ route('barang-keluar.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">

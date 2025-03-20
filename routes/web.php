@@ -17,6 +17,7 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangStokLaporanController;
 use App\Http\Controllers\BarangMasukLaporanController;
 use App\Http\Controllers\BarangKeluarLaporanController;
+use App\Http\Controllers\PendapatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,5 +97,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('barang-masuk/laporan', [BarangMasukLaporanController::class, 'index'])->name('barang-masuk.laporan');
     Route::resource('barang-masuk', BarangMasukController::class);
+
+    // Routes for Pendapatan
+    Route::resource('pendapatan', PendapatanController::class);
 });
 
