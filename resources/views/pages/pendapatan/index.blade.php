@@ -87,18 +87,14 @@
                                                 {{ $loop->iteration + $pendapatans->firstItem() - 1 }}
                                             </td>
 
-
                                             <td class="align-text-top" data-label="Tanggal">
                                                 {{ $row->tanggal }}
                                             </td>
                                             <td class="align-text-top" data-label="Keterangan">
-                                                {{ $row->Keteragan }}
+                                                {{ $row->keterangan }}
                                             </td>
                                             <td class="align-text-top text-start text-lg-center" data-label="Jumlah">
-                                                <a
-                                                    href="{{ route('pendapatan.show', $row->id) }}">                                                Rp. {{ number_format($row->jumlah) }}
-                                                    </a>
-
+                                                Rp. {{ number_format($row->jumlah) }}
                                             </td>
 
                                             <td class="align-text-top">

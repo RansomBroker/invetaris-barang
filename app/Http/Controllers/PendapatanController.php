@@ -49,9 +49,9 @@ class PendapatanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Pendapatan $pendapatan)
     {
-        //
+        return view('pages.pendapatan.edit', compact('pendapatan'));
     }
 
     /**
@@ -65,8 +65,10 @@ class PendapatanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Pendapatan $pendapatan)
     {
-        //
+        $pendapatan->delete();
+
+        return redirect()->route('pendapatan.index')->with('success', 'Transaction Deleted Successfully.');
     }
 }
