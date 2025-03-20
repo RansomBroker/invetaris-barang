@@ -27,7 +27,7 @@ class PendapatanController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.pendapatan.create');
     }
 
     /**
