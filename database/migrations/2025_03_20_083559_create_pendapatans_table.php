@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pendapatans', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal');
-            $table->string('nama');
+            $table->string('keterangan');
             $table->integer('jumlah');
             $table->timestamps();
         });
